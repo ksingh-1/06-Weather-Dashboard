@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Report</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    
+    <link rel="stylesheet" href="./style.css">
 
 </head>
 
@@ -32,8 +32,15 @@
                 <div class="col-sm-4 mt-2">
                     <p id="city-name"></p>
                     <p id="temperature"></p>
-                    <p "humidity"></p>
+                    <p id="humidity"></p>
+                    <p id="uv-index"></p>
+                    <p id="wind-speed"></p>
                 </div>
+                <div class="row ml-2 mb-2">
+                    <h3>5-Day Forecast</h3>
+                </div>
+                <div class="row ml-2" id="forecastWeather"></div>
+                
             </div>
         </main>
     </div>
@@ -47,7 +54,7 @@
     integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
     crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
+    <script src="./script.js"></script>
 
 
 </body>
