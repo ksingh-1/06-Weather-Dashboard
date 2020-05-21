@@ -17,19 +17,20 @@
 
         <main class="mx-4">
             <div class="row">
-                <label for="search-city"><bold>What City Would You Like to Search?</bold></label>
-                <form class="input-group mb-3 cityinput">
+                <label form="search-city"><bold>What City Would You Like to Search?</bold></label>
+                <form id="city-form">
                     <input type="text" id="citySearch" class="form-control">
                     <div class="input-group-append">
                         <button class="btn btn-primary" type="submit" id="submitButton"><i class="fas fa-search-location"></i></button>
                     </div>
                 </form>
-                <div class="card col-sm-12" id="previousSearches">
+                <div id="card col-sm-12" id="previousSearches">
                     <ul class="list-group list-group-flush" id="ullist"></ul>
                 </div>
             </div>
-            <div class="card col-md-6 col-sm-12" id=todaysReport>
-                <div class="col-sm-4 mt-2">
+
+            <div class="card col-md-6 col-sm-12">
+                <div class="col-md-8 c2">
                     <p id="city-name"></p>
                     <p id="temperature"></p>
                     <p id="humidity"></p>
@@ -39,7 +40,10 @@
                 <div class="row ml-2 mb-2">
                     <h3>5-Day Forecast</h3>
                 </div>
-                <div class="row ml-2" id="forecastWeather"></div>
+                <div class="forecastWeather"></div>
+                    <div class="col-md-2">
+                        <div class="card" style="width: 9rem">
+                    </div>
                 
             </div>
         </main>
