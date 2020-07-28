@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    let appid="52bc5d6c63798323a47e2f9d77df0a30";
+    let appid="&APPID=52bc5d6c63798323a47e2f9d77df0a30";
     // var city=searchedCities[searchedCities.length-1];
     let city="";
     let weather="";
@@ -31,7 +31,7 @@ $(document).ready(function () {
     // });
 
     displaySearch();
-        function currentWeather(){
+    function currentWeather(){
         if ($(this).attr("id")==="citySearchBtn") {
             city=$("#citySearch").val();
         } 
@@ -40,7 +40,7 @@ $(document).ready(function () {
         }
     
 
-        weather="https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + appid;
+        weather="https://api.openweathermap.org/data/2.5/weather?q=" + city + appid;
 
         if (searchHistory.indexOf(city)===-1){
         searchHistory.push(city);
@@ -53,15 +53,15 @@ $(document).ready(function () {
         $.getJSON(weather, function (json) {
             let temp=(json.main.temp - 273.15)*(9/5)+32;
             let windspeed=json.wind.speed*2.237;
-            $("#todaysReport").text(json.name+" "+ todays_date);
-            $("#weather-img").text("src", "https://api.openweathermap.org/img/w/" + json.weather[0].icon+".png");
+            $("#activeCity").text(json.name+" "+todays_date);
+            $("#weatherImg").text("src", "https://api.openweathermap.org/img/w/" + json.weather[0].icon+".png");
             $("#temperature").text(temp.toFixed(2)+ "*F");
             $("#humidity").text(json.main.humidity + "%");
             $("#windspeed").text(windspeed.toFixed(2)+" " + "mph");
         });
-
-    function FiveDayForecast() {
-        let Five_Day_Forecast= "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + appid;
+    }
+    function ForecastFiveDays() {
+        let Five_Day_Forecast= "https://api.openweathermap.org/data/2.5/forecast?q=" + city + appid;
         let day_count=1;
 
         $ajax({
@@ -71,18 +71,18 @@ $(document).ready(function () {
         .then(function(response) {
             for (let i=0; i<response.list.length; i++) {
                 let dateandtime=response.list[i].dt_txt;
-                let date=dateandtime.split(" ")[0];
+                let day=dateandtime.split(" ")[0];
                 let time=dateandtime.split(" ")[1];
                 if (time==="15:00:00"){
-                    let year = date.split("-")[0];
+                    let year=date.split("-")[0];
                     let month=date.split("-")[1];
-                    let day=date.split("-")[2];
+                    let date=date.split("-")[2];
 
-                $("day-") + day_count.children(".card-date").text(month+ "/" + day+ "/" + year);
-                $("day-") + day_count.children(".card-icon").attr("src", "https://api.openweathermap.org/img/w/"+response.list[i].weather[0].icon+".png");
-                $("day-") + day_count.children("card-temp").text("Temp: " + ((response.list[i].main.temp=273.15*(9/5)+32).toFixed(2)+"*F");
-                $("day-") + day_count.children("card-humidity").text("Humidity: "+response.list[i].main.humidity + "%");
-                day_count++;
+                    $("date-") + day_count.children(".card-date").text(month+ "/" + day+ "/" + year);
+                    $("date-") + day_count.children(".image").attr("src", "https://api.openweathermap.org/img/w/"+response.list[i].weather[0].icon+".png");
+                    $("date-") + day_count.children(".card-temperature").text("Temperature: " + ((response.list[i].main.temp=273.15)*(9/5)+32).toFixed(2)+"*F");
+                    $("date-") + day_count.children(".card-humidity").text("Humidity: "+response.list[i].main.humidity + "%");
+                    day_count++;
                 }
             }
         });
@@ -97,9 +97,9 @@ $(document).ready(function () {
             $("#searched-city").prepend(past_search);
         });
         $(".citySearchBtn").click(currentWeather);
-        $(".citySearchBtn").click(FiveDayForecast);
+        $(".citySearchBtn").click(ForecastFiveDays);
     }
-    $("#clear-history").click(function() {
+    $("#clearHistory").click(function() {
         localStorage.clear();
         location.reload();
     });
