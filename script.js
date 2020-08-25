@@ -43,7 +43,7 @@ $(document).ready(function () {
         weather="https://api.openweathermap.org/data/2.5/weather?q=" + city + appid;
 
         if (searchHistory.indexOf(city)===-1){
-        searchHistory.push(city);
+            searchHistory.push(city);
         }
 
         localStorage.setItem("cities", JSON.stringify(searchHistory));
@@ -64,7 +64,7 @@ $(document).ready(function () {
         let Five_Day_Forecast= "https://api.openweathermap.org/data/2.5/forecast?q=" + city + appid;
         let day_count=1;
 
-        $ajax({
+        $.ajax({
             url:Five_Day_Forecast,
             method:"GET"
         })
@@ -78,10 +78,10 @@ $(document).ready(function () {
                     let month=date.split("-")[1];
                     let date=date.split("-")[2];
 
-                    $("date-") + day_count.children(".card-date").text(month+ "/" + day+ "/" + year);
-                    $("date-") + day_count.children(".image").attr("src", "https://api.openweathermap.org/img/w/"+response.list[i].weather[0].icon+".png");
-                    $("date-") + day_count.children(".card-temperature").text("Temperature: " + ((response.list[i].main.temp=273.15)*(9/5)+32).toFixed(2)+"*F");
-                    $("date-") + day_count.children(".card-humidity").text("Humidity: "+response.list[i].main.humidity + "%");
+                    $("date-" + day_count).children(".card-date").text(month+ "/" + day+ "/" + year);
+                    $("date-" + day_count).children(".image").attr("src", "https://api.openweathermap.org/img/w/"+response.list[i].weather[0].icon+".png");
+                    $("date-" + day_count).children(".card-temperature").text("Temperature: " + ((response.list[i].main.temp=273.15)*(9/5)+32).toFixed(2)+"*F");
+                    $("date-" + day_count).children(".card-humidity").text("Humidity: "+response.list[i].main.humidity + "%");
                     day_count++;
                 }
             }
