@@ -79,7 +79,7 @@ $(document).ready(function () {
                     let date=date.split("-")[2];
 
                     $("date-" + day_count).children(".card-date").text(month+ "/" + day+ "/" + year);
-                    $("date-" + day_count).children(".image").attr("src", "https://api.openweathermap.org/img/w/"+response.list[i].weather[0].icon+".png");
+                    $("date-" + day_count).children(".card-image").attr("src", "https://api.openweathermap.org/img/w/"+response.list[i].weather[0].icon+".png");
                     $("date-" + day_count).children(".card-temperature").text("Temperature: " + ((response.list[i].main.temp=273.15)*(9/5)+32).toFixed(2)+"*F");
                     $("date-" + day_count).children(".card-humidity").text("Humidity: "+response.list[i].main.humidity + "%");
                     day_count++;
