@@ -1,16 +1,13 @@
-$(document).ready(function () {
-    let appid="&APPID=52bc5d6c63798323a47e2f9d77df0a30";
+
+    let appid="&appid=52bc5d6c63798323a47e2f9d77df0a30";
     // var city=searchedCities[searchedCities.length-1];
     let city="";
     let weather="";
     let todays_date=moment().format('dddd,MMMM Do YYYY');
     let searchHistory=JSON.parse(localStorage.getItem("cities"))===null?[]:JSON.parse(localStorage.getItem("cities"));
-    init();
-    // const queryURL="api.openweathermap.org/data/2.5/weather?q=";
+    $(document).ready(function () {   
+        init (); 
     
-    
-    // const citySearch=$(".cityinput");
-
     // $(document).ready(function () {
     //     var city=citiesLIst[citiesLIst.length-1];
     //     fiveDays(city);
@@ -24,7 +21,7 @@ $(document).ready(function () {
 
     // function citySearch(city) {
     //     $(".city").empty();
-    //     $(".temp").empty();
+    //     $(".temperature").empty();
     //     $(".humidity").empty();
     //     $(".wind").empty();
     //     $(".uvIndex").empty();
@@ -42,7 +39,7 @@ $(document).ready(function () {
 
         weather="https://api.openweathermap.org/data/2.5/weather?q=" + city + appid;
 
-        if (searchHistory.indexOf(city)===-1){
+        if (searchHistory.indexOf(city)=== -1){
             searchHistory.push(city);
         }
 
@@ -51,18 +48,18 @@ $(document).ready(function () {
         displaySearch();
 
         $.getJSON(weather, function (json) {
-            let temp=(json.main.temp - 273.15)*(9/5)+32;
-            let windspeed=json.wind.speed*2.237;
+            let temperature=(json.main.temperature - 273.15)*(9/5)+32;
+            let windSpeed=json.wind.speed*2.237;
             $("#activeCity").text(json.name+" "+todays_date);
             $("#weatherImg").text("src", "https://api.openweathermap.org/img/w/" + json.weather[0].icon+".png");
-            $("#temperature").text(temp.toFixed(2)+ "*F");
+            $("#temperature").text(termperature.toFixed(2)+ "*F");
             $("#humidity").text(json.main.humidity + "%");
-            $("#windspeed").text(windspeed.toFixed(2)+" " + "mph");
+            $("#windSpeed").text(windSpeed.toFixed(2)+" " + "mph");
         });
     }
     function ForecastFiveDays() {
         let Five_Day_Forecast= "https://api.openweathermap.org/data/2.5/forecast?q=" + city + appid;
-        let day_count=1;
+        let date_count=1;
 
         $.ajax({
             url:Five_Day_Forecast,
@@ -78,11 +75,11 @@ $(document).ready(function () {
                     let month=date.split("-")[1];
                     let date=date.split("-")[2];
 
-                    $("date-" + day_count).children(".card-date").text(month+ "/" + day+ "/" + year);
-                    $("date-" + day_count).children(".card-image").attr("src", "https://api.openweathermap.org/img/w/"+response.list[i].weather[0].icon+".png");
-                    $("date-" + day_count).children(".card-temperature").text("Temperature: " + ((response.list[i].main.temp=273.15)*(9/5)+32).toFixed(2)+"*F");
-                    $("date-" + day_count).children(".card-humidity").text("Humidity: "+response.list[i].main.humidity + "%");
-                    day_count++;
+                    $("date-" + date_count).children(".card-day").text(month+ "/" + day+ "/" + year);
+                    $("date-" + date_count).children(".card-image").attr("src", "https://api.openweathermap.org/img/w/"+response.list[i].weather[0].icon+".png");
+                    $("date-" + date_count).children(".card-temperature").text("Temperature: " + ((response.list[i].main.temperature=273.15)*(9/5)+32).toFixed(2)+"*F");
+                    $("date-" + date_count).children(".card-humidity").text("Humidity: "+response.list[i].main.humidity + "%");
+                    date_count++;
                 }
             }
         });
@@ -105,13 +102,3 @@ $(document).ready(function () {
     });
     $("#citySearchBtn").click(displaySearch);
 });
-
-// Search History//
-    // $("ullist").on('click', function (event){
-    //     clearPreviousCityData();
-    //     let listItem=event.target.id;
-    //     console.log("Search History: " +listItem);
-    //     if (!!listItem){
-    //         displayCityWeather(listItem, false);
-    //     }
-    // });

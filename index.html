@@ -19,8 +19,8 @@
             <h1 class="pt-1 pb-1">Weather Dashboard</h1>
         </div>
         <main class="container-fluid">
-            <div class="row justify-content-around">
-                <div class="col-3 card mt-4">
+            <div class="row" id="main-search">
+                <div class="col-md-4 card mt-4">
                     <div class="card">
                         <label form="search-city"><bold>What City Would You Like to Search?</bold></label>
                         <form class="form mt-4">
@@ -43,14 +43,15 @@
                     <div class="row" id="todaysReport"></div>
                     <!-- <div class="col-md-8 c2" id="todaysReport"> -->
                         <h2><span id="activeCity"></span><img id="weatherImg" src=""></h2>
-                        <h3 id="dayOfWeek"></h3>
-                        <p id="cityName"></p>
-                        <p id="temperature"></p>
-                        <p id="humidity"></p>
-                        <p id="uvIndex"></p>
-                        <p id="windSpeed"></p>
+                        
+                        <h1 id="dayOfWeek"></h1>
+                        <p>City: <span id="cityName"></span></p>
+                        <p>Temperature: <span id="temperature"></span></p>
+                        <p>Humidity: <span id="humidity"></span></p>
+                        <p>UV Index: <span id="uvIndex"></span></p>
+                        <p>Wind Speed: <span id="windSpeed"></p>
                     <!-- </div> -->
-                
+                </div>
                         <!-- 5 day Forecast -->
                     <h2 class="row ml-2 mb-2">5-Day Forecast</h2>
                         <div class="card-row">
