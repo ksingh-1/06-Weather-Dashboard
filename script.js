@@ -52,14 +52,14 @@
             let windSpeed=json.wind.speed*2.237;
             $("#activeCity").text(json.name+" "+todays_date);
             $("#weatherImg").text("src", "https://api.openweathermap.org/img/w/" + json.weather[0].icon+".png");
-            $("#temperature").text(termperature.toFixed(2)+ "*F");
+            $("#temperature").text(temperature.toFixed(2)+ "*F");
             $("#humidity").text(json.main.humidity + "%");
             $("#windSpeed").text(windSpeed.toFixed(2)+" " + "mph");
         });
     }
     function ForecastFiveDays() {
         let Five_Day_Forecast= "https://api.openweathermap.org/data/2.5/forecast?q=" + city + appid;
-        let date_count=1;
+        let day_count=1;
 
         $.ajax({
             url:Five_Day_Forecast,
@@ -73,13 +73,13 @@
                 if (time==="15:00:00"){
                     let year=date.split("-")[0];
                     let month=date.split("-")[1];
-                    let date=date.split("-")[2];
+                    let day=date.split("-")[2];
 
-                    $("date-" + date_count).children(".card-day").text(month+ "/" + day+ "/" + year);
-                    $("date-" + date_count).children(".card-image").attr("src", "https://api.openweathermap.org/img/w/"+response.list[i].weather[0].icon+".png");
-                    $("date-" + date_count).children(".card-temperature").text("Temperature: " + ((response.list[i].main.temperature=273.15)*(9/5)+32).toFixed(2)+"*F");
-                    $("date-" + date_count).children(".card-humidity").text("Humidity: "+response.list[i].main.humidity + "%");
-                    date_count++;
+                    $("day-" + day_count).children(".card-day").text(month+"/"+day+"/"+year);
+                    $("day-" + day_count).children(".card-image").attr("src", "https://api.openweathermap.org/img/w/"+response.list[i].weather[0].icon+".png");
+                    $("day-" + day_count).children(".card-temperature").text("Temperature: " + ((response.list[i].main.temperature=273.15)*(9/5)+32).toFixed(2)+"*F");
+                    $("day-" + day_count).children(".card-humidity").text("Humidity: "+response.list[i].main.humidity + "%");
+                    day_count++;
                 }
             }
         });
