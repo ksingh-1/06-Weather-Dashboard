@@ -1,12 +1,12 @@
-
-    let appid="&appid=52bc5d6c63798323a47e2f9d77df0a30";
+$(document).ready(function () {   
+    const appid="&APPID=52bc5d6c63798323a47e2f9d77df0a30";
     // var city=searchedCities[searchedCities.length-1];
     let city="";
     let weather="";
     let todays_date=moment().format('dddd,MMMM Do YYYY');
-    let searchHistory=JSON.parse(localStorage.getItem("cities"))===null?[]:JSON.parse(localStorage.getItem("cities"));
-    $(document).ready(function () {   
-        init (); 
+    let search_history=JSON.parse(localStorage.getItem("cities"))===null?[]:JSON.parse(localStorage.getItem("cities"));
+    // $(document).ready(function () {   
+    // init (); 
     
     // $(document).ready(function () {
     //     var city=citiesLIst[citiesLIst.length-1];
@@ -27,31 +27,30 @@
     //     $(".uvIndex").empty();
     // });
 
-    displaySearch();
-    function currentWeather(){
+    displaySearches();
+    function todaysReport(){
         if ($(this).attr("id")==="citySearchBtn") {
             city=$("#citySearch").val();
         } 
         else {
             city=$(this).text();
         }
-    
-
+        
         weather="https://api.openweathermap.org/data/2.5/weather?q=" + city + appid;
 
-        if (searchHistory.indexOf(city)=== -1){
-            searchHistory.push(city);
+        if (search_history.indexOf(city)=== -1){
+            search_history.push(city);
         }
 
-        localStorage.setItem("cities", JSON.stringify(searchHistory));
+        localStorage.setItem("cities", JSON.stringify(search_history));
 
-        displaySearch();
+        displaySearches();
 
         $.getJSON(weather, function (json) {
             let temperature=(json.main.temperature - 273.15)*(9/5)+32;
             let windSpeed=json.wind.speed*2.237;
-            $("#activeCity").text(json.name+" "+todays_date);
-            $("#weatherImg").text("src", "https://api.openweathermap.org/img/w/" + json.weather[0].icon+".png");
+            $("#current-city").text(json.name+" "+todays_date);
+            $("#weather-image").text("src", "https://api.openweathermap.org/img/w/" + json.weather[0].icon+".png");
             $("#temperature").text(temperature.toFixed(2)+ "*F");
             $("#humidity").text(json.main.humidity + "%");
             $("#windSpeed").text(windSpeed.toFixed(2)+" " + "mph");
@@ -62,13 +61,12 @@
         let day_count=1;
 
         $.ajax({
-            url:Five_Day_Forecast,
+            url: Five_Day_Forecast,
             method:"GET"
-        })
-        .then(function(response) {
-            for (let i=0; i<response.list.length; i++) {
+        }).then(function (response) {
+            for (let i=1; i<response.list.length; i++) {
                 let dateandtime=response.list[i].dt_txt;
-                let day=dateandtime.split(" ")[0];
+                let date=dateandtime.split(" ")[0];
                 let time=dateandtime.split(" ")[1];
                 if (time==="15:00:00"){
                     let year=date.split("-")[0];
@@ -85,20 +83,20 @@
         });
     }
 
-    function displaySearch(){
-        $("#searchedCities").empty();
-        searchHistory.forEach(function (city) {
-            let past_search=$("<li>");
-            past_search.addClass("list-group-time btn");
+    function displaySearches(){
+        $("#searched-cities").empty();
+        search_history.forEach(function (city) {
+            let past_search= $("<li>");
+            past_search.addClass("list-group-item btn");
             past_search.text(city);
-            $("#searched-city").prepend(past_search);
+            $("#searched-cities").prepend(past_search);
         });
-        $(".citySearchBtn").click(currentWeather);
-        $(".citySearchBtn").click(ForecastFiveDays);
+        $(".citySearchButton").click(todaysReport);
+        $(".citySearchButton").click(ForecastFiveDays);
     }
-    $("#clearHistory").click(function() {
+    $("#clear-history").click(function() {
         localStorage.clear();
         location.reload();
     });
-    $("#citySearchBtn").click(displaySearch);
+    $("#citySearchButton").click(displaySearches);
 });
