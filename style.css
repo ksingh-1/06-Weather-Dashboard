@@ -1,0 +1,15 @@
+
+.citysearchButton {
+    background-color: darkblue;
+    color: #ffffff;
+}
+
+.historyClearBtn{
+    background-color:darkblue;
+    color: #ffffff;
+}
+
+#cityFind {
+    float: left;
+}
+
