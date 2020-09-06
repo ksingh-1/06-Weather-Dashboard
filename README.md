@@ -58,4 +58,4 @@ kulpreet.s18@gmail.com
 If you have any questions about the repo contact me on GitHub at (https://github.com/ksingh-1/06 Server-Side API's Weather Dashboard)
 or reach me directly at <kulpreet.s18@gmail.com>.
 
-<img src="/06-Weather-Dashboard/Assets/FinalScreen.PNG">
+![final-screen]https://github.com/ksingh-1/06-Weather-Dashboard/blob/master/Assets/FinalScreen.PNG?raw=true
