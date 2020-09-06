@@ -1,15 +1,99 @@
 
+html {
+    position: relative;
+    min-height:auto;
+    background-size: 100%
+}
+body {
+    background-image: url(bg1.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%
+
+}
+
+nav { 
+    background-color: rgb(46, 45, 45);
+}
+
+h1 {
+    text-align: center;
+    margin: auto;
+    color:whitesmoke;
+    ;
+}
+
+/* .container-fluid {
+    background-color: rgb(190, 190, 190);
+} */
+.col-3{ 
+    background-color: rgba(67, 117, 255, 0.295);
+
+}
+.form {
+    background-color: rgb(190, 190, 190);
+}
+.city-question {
+    font-size: large;
+    text-align: center;
+}
+
+.search_history {
+    margin-left: 1px;
+    margin-right: 50px;
+}
+
+.card {
+    display:flex;
+}
+
+#searchBar {
+    display:flex;
+}
+
 .citysearchButton {
-    background-color: darkblue;
+    background-color: rgb(10, 10, 235);
+    color: #ffffff;
+
+}
+
+.clearBtn{
+    background-color:rgba(0, 0, 139, 0.479);
     color: #ffffff;
 }
 
-.historyClearBtn{
-    background-color:darkblue;
-    color: #ffffff;
-}
-
-#cityFind {
+#searchBar {
     float: left;
 }
 
+.five-days {
+    display: inline-block;
+    background-color: #014f9db6;
+    color: #ffffff;
+    height: 40vh;
+    width: 20vh;
+    padding: .1em;
+    margin: 0.01em;
+    border-radius: 2px;
+    text-align: center;
+}
+
+.p {
+    font-size:large;
+}
+
+#temperature {
+    color: white
+}
+
+#humidity {
+    color: white
+}
+
+#windspeed {
+    color: white
+}
+
+#uvIndex {
+    color: white
+}
