@@ -55,7 +55,7 @@ kulpreet.s18@gmail.com
 ## *Questions*
 <img src="https://avatars1.githubusercontent.com/u/62266210?v=4" alt="avatar" style="border-radius: 15px" width="60"/>
 
-If you have any questions about the repo contact me on GitHub at (https://github.com/ksingh-1/06 Server-Side API's Weather Dashboard)
+If you have any questions about the repo contact me on GitHub at (https://github.com/ksingh-1)
 or reach me directly at <kulpreet.s18@gmail.com>.
 
 ![final-screen](https://github.com/ksingh-1/06-Weather-Dashboard/blob/master/Assets/FinalScreen.PNG?raw=true)
